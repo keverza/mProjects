@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Label Creator</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    
+</head>
+
+<body>
+    <header class="main_header">
+        <div>
+            <a href=# class="logo"><strong>KEV&Eacute;RZA</strong></a>
+            <a href="index.html" class="nav">Test</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="section_header">
+            Label generator
+        </section>
+        <section class="section_subheader">
+            <h1>Create label</h1>
+            <div id="coffee-label-color" class="coffee_label">
+                <textarea maxlength="35" cols="18" wrap="hard" class="coffee_label_textarea" id="coffee-label-name" rows="2" placeholder="Kavos pavadinimas"></textarea>              
+            </div>
+            <div id='error-message' class='error' ></div>
+            <div>                
+                <div for="buttons" class="btn" id="addLabel"><i class="fas fa-plus-circle" onclick="initiate()"></i></div>
+                                              
+            </div>
+        </section>
+
+        <section id='sectionList' class="section_subheader list">
+            <h1>Files ready to download</h1>
+            <ul class="label_list" id="label-export-list">
+                                
+            </ul>  
+            <div class="btn ZipArchive" id="download" ><i class="fas fa-download" onclick="zip()"></i></div>
+        </section>
+
+        <section id="test-result" class="section_test">
+                <div><img src="" id="screenshot"></div>
+                <div><canvas id="mergeCanvas"></canvas></div>
+                <div><canvas id="mergeCanvas2"></canvas></div>
+                <img id="label-img">
+                <img id="img">
+        </section>
+        
+    </main>
+    
+</body>
+<script src="jquery-2.2.2.min.js"></script>
+<script src="html2canvas.min.js"></script>
+<script src="label_creator.js"></script>
+
+
+</html>
