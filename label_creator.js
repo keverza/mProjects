@@ -4,8 +4,8 @@ let coffeeRegion = [
     {country:"COSTA RICA", color:"Aqua"},      
     {country:"KENYA", color:"BlueViolet"},
     {country:"ETHIOPIA", color:"Chartreuse"},
-    {country:"BOURBON", color:"DarkGoldenRod"},
-    {country:"EL SALVADOR", color:"ForestGreen"}
+    {country:"SWISS", color:"DarkGoldenRod"},
+    {country:"SOME REGION", color:"ForestGreen"}
   ];
 
   var textTitle = "";
