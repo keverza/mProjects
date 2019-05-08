@@ -15,12 +15,12 @@ let coffeeRegion = [
   var spacing = document.getElementById('coffee-label-name');
   var labelSpacing = "-75px";
 
-  //Compare text to region array
+  //Compare text to region array and get set color of label
 document.getElementById('coffee-label-name').addEventListener('keyup', function() {
     textTitle = document.getElementById('coffee-label-name').value.toUpperCase();
     
      if(textTitle != ""){
-     //define color
+     //define color, should add prediction or suggestions for quicker enter
        for (var i = 0; i < coffeeRegion.length; i++) {
          if (textTitle === coffeeRegion[i].country) labelColor = coffeeRegion[i].color; 
          console.log(labelColor); 
@@ -45,7 +45,7 @@ document.getElementById('coffee-label-name').addEventListener('keyup', function(
 
      
 //Create list to view already completed names
-//Click on a close button to hide the current list item
+
 var close = document.getElementsByClassName("close");
 var i;
 for (i = 0; i < close.length; i++) {
@@ -62,10 +62,11 @@ function newElement() {
   var inputValue = document.getElementById("coffee-label-name").value.toUpperCase();
   var t = document.createTextNode(inputValue);
   li.appendChild(t);
+    // if nothing entered display error and stop executing program
   if (inputValue === '') {
     var timeout;
     var errorMessage = document.getElementById("error-message")
-    errorMessage.innerHTML = "Kavos be pavadinimo nebūna!";
+    errorMessage.innerHTML = "I need name of label!";
     clearTimeout(timeout);
     timeout = setTimeout(function() {
       errorMessage.innerHTML = "";
@@ -73,13 +74,10 @@ function newElement() {
       return false;
     
   } else {
-    /* document.getElementById("sectionList").style.display = "inline-block"; */
-    document.getElementById("label-export-list").appendChild(li);
-    
-  }
-  
+    /* add label name to list */
+    document.getElementById("label-export-list").appendChild(li);    
+  }  
   document.getElementById("coffee-label-name").value = "";
-
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("delete");
   span.className = "close";
@@ -89,17 +87,19 @@ function newElement() {
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function() {
       var div = this.parentElement; 
-      //Prepare string for AJAX to send a delete request     
+      //Prepare string for AJAX to send a delete request to delete images from server    
       var stringTemp = div.innerHTML.split("<span ");
       var stringLabelDelete250g = "250g_" + stringTemp[0].replace(/\s/g, "_");
       var stringLabelDelete1kg = "1kg_" + stringTemp[0].replace(/\s/g, "_");
+        
+        //should create array of names instead of two separate requests
 
       $.ajax({
         url: 'delete.php',
         type: 'post',
         data: {'filename' : stringLabelDelete1kg, stringLabelDelete250g},
         success: function(data){
-           console.log(stringLabelDelete1kg + ' Deleted');         
+           console.log(stringLabelDelete1kg + ' Deleted');       
         
         }
      });
@@ -112,42 +112,16 @@ function newElement() {
          //Remove child from list
       div.parentNode.removeChild(div);
       }
-   });
-     /* //Remove child from list
-      div.parentNode.removeChild(div); */
+   });   
     }
-  }
-  
+  }  
 };
 
-function generateScreenshot(){
-    html2canvas(document.getElementById('coffee-label-color')).then(function(tempCanvas) {
-     document.getElementById('test-result').appendChild(tempCanvas);
-      // Get base64URL
-      var base64URL = tempCanvas.toDataURL('image/jpeg').replace('image/jpeg', 'image/octet-stream');
-      var image = tempCanvas.toDataURL("image/png");
-      image = image.replace('data:image/png;base64,', '');
-      
-      // AJAX request
-      $.ajax({
-         url: 'ajaxfile.php',
-         type: 'post',
-         data: {image: base64URL, 'imgname': textEdit},
-         success: function(data){
-            console.log('Upload successfully');
-         }
-      });
-      document.getElementById('test-result').removeChild(tempCanvas);
-      textTitle = "";
-      document.getElementById('coffee-label-name').value = ""; 
-      labelColor = 'lightgray';
-      label.style.background = labelColor;
-    });
-   };
-//Create 250g mockup to canvas
+
+//Define 250g mockup to canvas
    var mergeCanvas = document.getElementById('mergeCanvas');
    var context = mergeCanvas.getContext('2d'); 
-//Create 1kg mockup to canvas
+//Define 1kg mockup to canvas
    var mergeCanvas2 = document.getElementById('mergeCanvas2');
    var context2 = mergeCanvas2.getContext('2d');
 //Declare image holders
@@ -186,7 +160,7 @@ function generateLabel(){
     return a;
     
   };
-
+//Every time key pressed update label. Should not do that as its inefficient
 document.getElementById('coffee-label-name').addEventListener('keyup', function generateLabel(){    
        html2canvas(document.getElementById('coffee-label-color')).then(function(labelPng) {
        document.getElementById('screenshot').appendChild(labelPng);
@@ -208,13 +182,8 @@ function drawLabel() {
     return a;
   }; 
 
-/* //save merged canvas as image
-function saveBagToPng() {  
-  img = document.getElementById("img");
-  img.src = mergeCanvas.toDataURL("image/png", 1.0);  
-  img.style.display = 'inline';
-   } */
 
+// send images to server for saving. Should create array or something instead of two separate AJAX requests
 function sendBag250g() {
   //Remove /n from name
   textEdit = "250g_"
@@ -257,6 +226,7 @@ function sendBag1kg() {
    return a;
 };
 
+//Clear all inputs
 function clear() {
   var a = $.Deferred();
   
@@ -270,6 +240,7 @@ function clear() {
    return a;
 }
  
+//Iniatiate synchronous function execution
 function initiate() {
   if (newElement() === false) {    
     console.error('Please coffee label name');    
