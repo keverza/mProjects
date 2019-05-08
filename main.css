@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: 0;
+}
+.main_header {
+    padding: 0.8em;
+    background: gainsboro;
+    width: 100%;
+}
+.main_header a {
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.logo {
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+	font-weight: 600;
+	letter-spacing: 0.025em;
+	color: gainsboro;
+    padding: 0.1em;
+    background: white;
+}
+
+.nav {
+    color: white;
+    padding: 0.1em;
+}
+
+main {    
+    position: absolute;
+    margin: 1em;
+}
+
+.section_header {
+    font-size: 1.5em;
+    text-align: left;
+    margin-left: 0.4em;      
+}
+
+.section_subheader {
+    font-size: 0.8em;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    margin: 8px;
+}
+
+.coffee_label {
+    width: 200px;
+    height: 100px;
+    background: lightgray;
+}
+.coffee_label_textarea {
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+
+    position: relative;
+    bottom: -75px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    color: white;
+    
+    text-transform: uppercase;
+    width: 180px;
+    height: 50px;
+    text-align: center;    
+}
+
+.label_list {
+    text-align: left;
+}
+.label_list span {
+    text-align: right;
+}
+
+.btn {
+    margin: 8px;
+    font-size: 2em;
+    color: gainsboro;
+    position: relative;
+    bottom: 0;
+}
+
+.btn > i:hover {
+    color: rgb(169, 201, 56);
+    cursor: pointer;
+ }
+
+ .close {
+    text-align: right;
+    color: gray; 
+    position: relative;
+    right: 100;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+  }
+
+  .close:hover {
+     color: #f44336;    
+  }
+
+  .error {
+    height: 10px;
+    display: inline-block;
+    color: #f44336;
+  }
+
+ #test-result {
+     display: none;
+ }
