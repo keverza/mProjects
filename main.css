@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     margin: 0;
 }
 .main_header {
@@ -52,7 +51,7 @@ main {
 }
 
 .coffee_label {
-    width: 200px;
+    width: 300px;
     height: 100px;
     background: lightgray;
 }
@@ -64,8 +63,7 @@ main {
 
     position: relative;
     bottom: -75px;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 700;
+    font-family: 'Source Sans Pro', sans-serif;    
     color: white;
     
     text-transform: uppercase;
